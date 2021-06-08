@@ -1,0 +1,235 @@
+@import 'nullstyle.scss';
+
+$maintxt-color: #373A39;
+$titletxt-color:#242121;
+$greentxt: #9CB58C;
+
+@mixin stats ($mgn) {
+    position: relative;
+
+    &-precentage{
+        margin-right: calc(100% - #{$mgn} - 16px);
+    }
+
+    &::after{
+        content: '';
+        position: absolute;
+        width: calc(100% - (100% - #{$mgn}));
+        height: 2px;
+        top: -4px;
+        left: 0;
+        background-color: #000;
+    }
+}
+
+.regular-txt{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 24px;
+    color: $maintxt-color;
+}
+.header{
+    background: url('/Source/images/Header-bg.jpg') 0 0/cover no-repeat; 
+    height: 100vh;
+    position: relative;
+
+    &__container{
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+    
+    &__top{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    &__logo{
+        margin: 26px 0;
+    }
+
+   &__content{
+       text-align: center;
+   }
+
+   &__title{
+        margin-top: 240px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 100px;
+        line-height: 122px;
+        color: #F8F2F0;
+   }
+
+   &__subtitle{
+        margin-top: 18.5px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 2.74px;
+        color: #9CB58C;
+   }
+
+   &__downpic{
+       position: absolute;
+       left: 50%;
+       bottom: 30px;
+   }
+}
+
+.menu{
+    &__list{
+        display: flex;
+    }
+
+    &__item{
+        margin-left: 50px;
+
+        & a:hover{
+            color: #839876;
+        }
+
+        & a:active{
+            color: $greentxt;
+        }
+
+        &--active{
+            position: relative;
+            &::after{
+                content:'';
+                position: absolute;
+                top: 20px;
+                left: -6px;
+                width: 50px;
+                height: 1px;
+                background-color: $greentxt;
+            }
+        }
+    }
+
+    &__link{
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 0.6px;
+        color:$maintxt-color;
+    }
+}
+
+.container{
+    max-width: 1174px;
+    margin: 0 auto;
+}
+
+.title{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 75px;
+    letter-spacing: -1.65px;
+    color:$titletxt-color;
+    position: relative;
+    &::after{
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 4px;
+        top: 74px;
+        left: 0;
+        background-color: $greentxt;
+    }
+}
+
+.about{
+    &__inner{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 152px;
+        margin-bottom: 160px;  
+    }
+
+    &__text{
+        width: 770px;
+        
+        & p{
+            @extend .regular-txt;
+
+            &:last-child{
+                margin-top: 24px;
+            }
+        }
+    }
+}
+
+.expertise{
+    &__title{
+        margin-bottom: 110px;
+    }
+
+    &__wrapper1{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__statistics-item{
+        position: relative;
+        width: 370px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        margin-top: 4px;
+        &:last-child{
+            margin-bottom: 0;
+        }
+
+        &::before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            top: -4px;
+            left: 0;
+            background-color: #F0F0F0;
+        }
+
+        & p{
+            font-family: 'Open Sans';
+            font-weight: 400;
+            font-size: 11px;
+            line-height: 20px;
+            letter-spacing: 1px;
+            color: #1D1D1D;
+        }
+    }
+
+    &__branding{
+        @include stats(90%);
+    }
+
+    &__design{
+        @include stats(80%);
+    }
+
+    &__development{
+        @include stats(85%);
+    }
+
+    &__text{
+        width: 770px;
+        @extend .regular-txt;
+
+        & p:last-child{
+            margin-top: 24px;  
+        }
+    }
+
+
+}
