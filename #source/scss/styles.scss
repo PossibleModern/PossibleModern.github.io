@@ -3,6 +3,7 @@
 $maintxt-color: #373A39;
 $titletxt-color:#242121;
 $greentxt: #9CB58C;
+$bgc: #F6F8FA;
 
 @mixin stats ($mgn) {
     position: relative;
@@ -22,14 +23,46 @@ $greentxt: #9CB58C;
     }
 }
 
-.regular-txt{
+@mixin cards ($src, $t){
+    width: 370px;
+    padding-left: 90px;
+    position: relative;
+    &::before{
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: $t;
+        left: 0;
+        background: url($src) 0 0 no-repeat;
+    }
+}
+
+@mixin activ ($w){
+    &--active{
+        position: relative;
+        &::after{
+            content:'';
+            position: absolute;
+            top: 22px;
+            left: -6px;
+            width: $w;
+            height: 2px;
+            background-color: $greentxt;
+        }
+    }
+}
+
+body{
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 300;
     font-size: 14px;
     line-height: 24px;
     color: $maintxt-color;
+    background-color: #fff;
 }
+
 .header{
     background: url('/Source/images/Header-bg.jpg') 0 0/cover no-repeat; 
     height: 100vh;
@@ -90,6 +123,10 @@ $greentxt: #9CB58C;
     &__item{
         margin-left: 50px;
 
+        &:first-child{
+            margin-left: 0;
+        }
+
         & a:hover{
             color: #839876;
         }
@@ -98,18 +135,7 @@ $greentxt: #9CB58C;
             color: $greentxt;
         }
 
-        &--active{
-            position: relative;
-            &::after{
-                content:'';
-                position: absolute;
-                top: 20px;
-                left: -6px;
-                width: 50px;
-                height: 1px;
-                background-color: $greentxt;
-            }
-        }
+        @include activ(50px);
     }
 
     &__link{
@@ -148,34 +174,39 @@ $greentxt: #9CB58C;
 }
 
 .about{
+    background-color:$bgc;
+    padding-top: 150px;
+    padding-bottom: 160px;  
     &__inner{
         display: flex;
         justify-content: space-between;
-        margin-top: 152px;
-        margin-bottom: 160px;  
     }
 
     &__text{
         width: 770px;
         
-        & p{
-            @extend .regular-txt;
-
-            &:last-child{
-                margin-top: 24px;
-            }
+        & p:last-child{
+            margin-top: 24px;
         }
     }
 }
 
 .expertise{
+    padding-top: 150px;
+    padding-bottom: 160px;
+
     &__title{
-        margin-bottom: 110px;
+        margin-bottom: 120px;
     }
 
     &__wrapper1{
         display: flex;
         justify-content: space-between;
+        margin-bottom: 110px;
+    }
+
+    &__statistics{
+        padding-top: 12px;
     }
 
     &__statistics-item{
@@ -184,8 +215,7 @@ $greentxt: #9CB58C;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 28px;
-        margin-top: 4px;
+        margin-bottom: 32px;
         &:last-child{
             margin-bottom: 0;
         }
@@ -224,12 +254,84 @@ $greentxt: #9CB58C;
 
     &__text{
         width: 770px;
-        @extend .regular-txt;
-
         & p:last-child{
             margin-top: 24px;  
         }
     }
 
+    &__cards{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
+        &-item{
+            width: 370px;
+            padding-left: 90px;
+            position: relative;
+        }
+
+        &-title{
+            margin-bottom: 14px;
+
+            font-family: Raleway;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 4.29px;
+            color: #333333;
+        }
+    }
+
+    &__graphdes{
+        @include cards('/Source/icons/graph-des.svg', 0);
+    }
+
+    &__webdev{
+        @include cards('/Source/icons/web-dev.svg', 0);
+    }
+
+    &__mark{
+        @include cards('/Source/icons/speaker.svg', -10px);
+
+    }
+}
+
+.offer{
+    background-color: $bgc;
+
+    &__inner{
+        display: flex;
+    }
+
+    &__wrapper{
+        margin: 102px 0 180px 0;
+        max-width: 470px;
+        float: right;
+    }
+
+    &__img{
+        position: relative;
+        left: -135px;
+    }
+
+    &__text p:last-child{
+        margin-top: 24px;
+    }   
+}
+
+.portfolio{
+
+    padding-top: 140px;
+
+    &__wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    &__menu .menu__item{
+        @include activ(33px);
+    }
+    
 }
